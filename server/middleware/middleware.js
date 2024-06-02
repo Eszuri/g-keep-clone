@@ -1,12 +1,12 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from 'express';
-
+import 'dotenv/config'
 
 
 const middleware = (app) => {
     app.use(cors({
-        origin: "http://localhost:5173",
+        origin: process.env.CORS_URI,
         credentials: true,
     }));
     app.use(express.json({ limit: "10mb" }));
