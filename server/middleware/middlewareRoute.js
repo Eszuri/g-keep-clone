@@ -1,4 +1,5 @@
 import { api, note } from "../api/controller/index.js";
+import { cookieParser } from 'cookie-parser';
 
 
 // route /api
