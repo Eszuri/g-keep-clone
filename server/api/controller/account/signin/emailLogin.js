@@ -11,7 +11,7 @@ const emailLogin = (req, res) => {
                 if (data == true) {
                     const token = jwt.sign({ email: user.email, avatar: user.avatar, name: user.name, age: user.age }, jwtPrivateKey, { expiresIn: expiredJWT });
                     res.status(200).
-                        cookie(jwtCookiesName.authToken, token, { maxAge: expiredCookie, httpOnly: false, secure: true, sameSite: "Lax", path: "/" })
+                        cookie(jwtCookiesName.authToken, token, { maxAge: expiredCookie, httpOnly: false, secure: true, sameSite: "None", path: "/" })
                         .send({ succes: true, token: token, message: "Login Succesfully" });
                 } else if (data == false) {
                     res.status(201).send({ succes: false, message: "Password Incorrect" });

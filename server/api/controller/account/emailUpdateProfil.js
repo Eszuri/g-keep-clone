@@ -9,7 +9,7 @@ const emailUpdateProfil = (req, res) => {
                 .then(db => {
                     const token = jwt.sign({ email: db.email, avatar: db.avatar, name: db.name, age: db.age }, jwtPrivateKey, { expiresIn: expiredJWT });
                     res.status(200)
-                        .cookie(jwtCookiesName.authToken, token, { maxAge: expiredCookie, httpOnly: false, secure: true, sameSite: "Lax", path: "/" })
+                        .cookie(jwtCookiesName.authToken, token, { maxAge: expiredCookie, httpOnly: false, secure: true, sameSite: "None", path: "/" })
                         .send({ succes: true, message: "Update Data Succesfully" })
                 })
         })
