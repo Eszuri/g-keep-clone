@@ -14,7 +14,7 @@ const callbackUploadAvatar = function (req, res) {
             .then(db => {
                 const token = jwt.sign({ email: db.email, avatar: db.avatar, name: db.name, age: db.age }, jwtPrivateKey, { expiresIn: expiredJWT });
                 res.status(200)
-                    .cookie(jwtCookiesName.authToken, token, { maxAge: expiredCookie, httpOnly: true, path: "/" })
+                    .cookie(jwtCookiesName.authToken, token, { maxAge: expiredCookie, httpOnly: false, path: "/" })
                     .send({ succes: true, message: "Update Data Succesfully" })
             })
     }
