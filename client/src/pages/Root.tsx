@@ -110,6 +110,7 @@ export default function Root() {
             <Helmet>
                 <title>Penyimpan Catatan</title>
                 <meta name="description" content="Menyimpan Catatan anda disini" />
+                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
             </Helmet>
             <Toaster visibleToasts={1} duration={4000} position="bottom-center" />
             <Navbar isVisiblecheck={isVisible.check} isVisiblenotLogged={isVisible.notLogged} onOpen={() => { onOpen() }} />

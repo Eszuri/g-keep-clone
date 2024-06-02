@@ -86,6 +86,7 @@ export default function Profil() {
             <Helmet>
                 <title>Penyimpan Catatan | Your Profil</title>
                 <meta name="description" content="Berisi data dari akun anda" />
+                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
             </Helmet>
             <Loading open={isVisible.loading} />
 

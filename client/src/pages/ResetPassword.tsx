@@ -88,6 +88,7 @@ function ResetPassword() {
             <Helmet>
                 <title>Penyimpan Catatan | Reset Password</title>
                 <meta name="description" content="Page untuk membuat password baru" />
+                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
             </Helmet>
             <Modal isOpen={ALL.modal} hideCloseButton={true}>
                 <ModalContent>

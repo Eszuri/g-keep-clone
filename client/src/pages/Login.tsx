@@ -104,6 +104,7 @@ export default function Login() {
             <Helmet>
                 <title>Penyimpan Catatan | Login</title>
                 <meta name="description" content="Login Page untuk masuk ke akun anda" />
+                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
             </Helmet>
             <Toaster duration={4000} visibleToasts={1} />
             <Modal

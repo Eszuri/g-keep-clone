@@ -76,6 +76,7 @@ export default function Register() {
             <Helmet>
                 <title>Penyimpan Catatan | Regristrasi</title>
                 <meta name="description" content="buat akun untuk membuat akses ke web ini" />
+                <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
             </Helmet>
             <section className='flex justify-center items-center w-full h-screen'>
                 <form className="flex flex-col gap-2.5 bg-white p-7 w-[450px] rounded-2xl" onSubmit={CreateUser}>
