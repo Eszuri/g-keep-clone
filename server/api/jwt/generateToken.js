@@ -31,7 +31,7 @@ async function generateTokenAuth_Token(findEmail) {
 //         .then(user => {
 //             token = jwt.sign({ id: user._id, email: user.email, password: user.password, avatar: user.avatar, name: user.name, age: user.age }, jwtPrivateKey, { expiresIn: expiredJWT });
 //             // return res.status(200)
-//             //     .cookie(jwtCookiesName, token, { maxAge: expiredCookie, httpOnly: false,secure: true, sameSite: "Strict",, path: "/api/protected" })
+//             //     .cookie(jwtCookiesName, token, { maxAge: expiredCookie, httpOnly: false,secure: true, sameSite: true,, path: "/api/protected" })
 //         }).catch((err) => {
 //             console.log(err);
 //         })
