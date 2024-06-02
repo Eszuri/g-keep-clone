@@ -6,7 +6,7 @@ import 'dotenv/config'
 
 const middleware = (app) => {
     app.use(cors({
-        origin: ['https://penyimpan-catatan.vercel.app/'],
+        origin: ['https://penyimpan-catatan.vercel.app/', 'https://penyimpan-catatan.vercel.app'],
         credentials: true,
     }));
     app.use(express.json({ limit: "10mb" }));
