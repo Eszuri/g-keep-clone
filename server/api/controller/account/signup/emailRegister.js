@@ -30,7 +30,7 @@ const emailRegister = (req, res) => {
                         res.status(200).cookie(
                             jwtCookiesName.verifyEmail,
                             jwt.sign({ email: req.body.email, password: req.body.password, token: randomToken, avatar: req.body.avatar, expires: new Date(exp).getTime() }, jwtPrivateKey, { expiresIn: '30m' }),
-                            { maxAge: 1 * 60 * 60 * 1000, httpOnly: false, secure: true, sameSite: true, }
+                            { maxAge: 1 * 60 * 60 * 1000, httpOnly: false, secure: true, sameSite: "None", }
                         ).send({ emailValid: true, message: "SUCCES" });
                     }
                 }
