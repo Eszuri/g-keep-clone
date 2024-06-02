@@ -6,7 +6,7 @@ import 'dotenv/config'
 
 const middleware = (app) => {
     app.use(cors({
-        origin: process.env.CORS_URI,
+        origin: process.env.CORS_URL,
         credentials: true,
     }));
     app.use(express.json({ limit: "10mb" }));
