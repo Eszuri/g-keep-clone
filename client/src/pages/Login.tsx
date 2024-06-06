@@ -74,13 +74,19 @@ export default function Login() {
                         }
                     })
                 } else {
-                    toast.success("token has been sent to your email", {
-                        style: {
-                            backgroundColor: "green",
-                            color: "white"
-                        }
-                    });
-                    setresetPass({ ...resetPass, btnSubmit: true, switch: false });
+                    if (response.data.failed) {
+                        toast.error("Failed Reset Password", {
+                            style: { backgroundColor: "rgb(201, 40, 40)", color: "white" }
+                        })
+                    } else {
+                        toast.success("token has been sent to your email", {
+                            style: {
+                                backgroundColor: "green",
+                                color: "white"
+                            }
+                        });
+                        setresetPass({ ...resetPass, btnSubmit: true, switch: false });
+                    }
                 }
             })
             .catch(() => {

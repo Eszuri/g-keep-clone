@@ -1,7 +1,7 @@
 import { connectNodemailer } from './config.js';
 import 'dotenv/config'
 
-const messageGmailResetPassword = (email, id, token) => {
+const messageGmailResetPassword = (email, id, token, success, failed) => {
 
     const message = {
         from: process.env.USER,
@@ -17,9 +17,9 @@ const messageGmailResetPassword = (email, id, token) => {
 
     connectNodemailer.sendMail(message, (err, data) => {
         if (err) {
-            console.log(err);
+            failed(err);
         } else {
-            return data
+            success(data);
         }
     })
 };

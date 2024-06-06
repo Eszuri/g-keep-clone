@@ -10,11 +10,14 @@ const generateTokenResetPassword = (req, res) => {
             if (user == null) {
                 res.status(201).send({ noAccount: true, message: "account not found" });
             } else {
-                messageGmailResetPassword(user.email, user._id, randomToken);
-                collectionsUser.findOneAndUpdate({ email: user.email }, { resetPasswordToken: randomToken })
-                    .then(() => {
-                        res.status(200).send({ accountFound: true, Message: "Account Found" })
-                    })
+                messageGmailResetPassword(user.email, user._id, randomToken, (() => {
+                    collectionsUser.findOneAndUpdate({ email: user.email }, { resetPasswordToken: randomToken })
+                        .then(() => {
+                            res.status(200).send({ accountFound: true, Message: "Account Found" })
+                        })
+                }), (() => {
+                    res.status(201).send({ failed: true })
+                }));
             }
         })
 };

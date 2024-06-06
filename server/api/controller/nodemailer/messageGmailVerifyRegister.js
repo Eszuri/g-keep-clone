@@ -1,7 +1,7 @@
 import { connectNodemailer } from './config.js';
 
 import 'dotenv/config'
-const messageGmailVerifyRegister = (email, token, success) => {
+const messageGmailVerifyRegister = (email, token, success, failed) => {
 
     const message = {
         from: process.env.USER,
@@ -12,7 +12,7 @@ const messageGmailVerifyRegister = (email, token, success) => {
 
     connectNodemailer.sendMail(message, (err, data) => {
         if (err) {
-            console.log(err);
+            failed(err);
         } else {
             success(data);
         }

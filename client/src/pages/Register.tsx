@@ -7,6 +7,7 @@ import axios from 'axios';
 import { EyeSlash, Eye } from '../icon/Eye';
 import GetData from '../api/GetData';
 import { Helmet } from 'react-helmet-async';
+import { toast, Toaster } from 'sonner';
 
 
 export default function Register() {
@@ -50,9 +51,13 @@ export default function Register() {
                     setErrorMessage({ ...errorMessage, email: "Email Already Registered" });
                     setInvalid({ ...invalid, email: true });
                 } else {
-                    setdisabled(true);
-                    navigate('/verification-email');
-                    localStorage.setItem('cooldown', '60');
+                    if (response.data.failed) {
+                        toast.error("Failed Generate Code");
+                    } else {
+                        setdisabled(true);
+                        navigate('/verification-email');
+                        localStorage.setItem('cooldown', '60');
+                    }
                 }
             })
             .catch(() => {
@@ -78,6 +83,7 @@ export default function Register() {
                 <meta name="description" content="buat akun untuk membuat akses ke web ini" />
                 <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
             </Helmet>
+            <Toaster visibleToasts={4000} />
             <section className='flex justify-center items-center w-full h-screen'>
                 <form className="flex flex-col gap-2.5 bg-white p-7 w-[450px] rounded-2xl" onSubmit={CreateUser}>
                     <div className="flex flex-col">

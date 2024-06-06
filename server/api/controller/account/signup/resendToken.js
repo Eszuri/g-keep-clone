@@ -6,12 +6,15 @@ const resendToken = (req, res) => {
     const exp = new Date().getTime() + (30 * 60 * 1000);
 
     jwt.verify(req.cookies.verifyEmail, jwtPrivateKey, (err, data) => {
-        messageGmailVerifyRegister(data.email, randomToken);
-        res.status(200).cookie(
-            jwtCookiesName.verifyEmail,
-            jwt.sign({ email: data.email, password: data.password, token: randomToken, avatar: data.avatar, expires: new Date(exp).getTime() }, jwtPrivateKey, { expiresIn: '30m' }),
-            { maxAge: 1 * 60 * 60 * 1000, httpOnly: true, secure: true, sameSite: "None", }
-        ).send({ resend: true, message: "SUCCES REFRESH TOKEN" });
+        messageGmailVerifyRegister(data.email, randomToken, (() => {
+            res.status(200).cookie(
+                jwtCookiesName.verifyEmail,
+                jwt.sign({ email: data.email, password: data.password, token: randomToken, avatar: data.avatar, expires: new Date(exp).getTime() }, jwtPrivateKey, { expiresIn: '30m' }),
+                { maxAge: 1 * 60 * 60 * 1000, httpOnly: true, secure: true, sameSite: "None", }
+            ).send({ resend: true, message: "SUCCES REFRESH TOKEN" });
+        }), (() => {
+            res.status(201).send({ failed: true })
+        }));
     })
 };
 

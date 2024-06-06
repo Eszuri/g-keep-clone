@@ -107,7 +107,7 @@ export default function VerifyEmail() {
                             })
                             setTimeout(() => {
                                 navigate("/login");
-                            }, 1000);
+                            }, 500);
                         } else {
                             toast.error("Token Is Incorrect", {
                                 style: {
@@ -139,7 +139,7 @@ export default function VerifyEmail() {
                     window.location.reload();
 
                 } else {
-                    toast.error("ERROR ", {
+                    toast.error("ERROR ReGenerate Token", {
                         style: {
                             backgroundColor: "red",
                             color: "white"
