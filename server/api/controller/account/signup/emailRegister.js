@@ -26,12 +26,13 @@ const emailRegister = (req, res) => {
                         // hash password
                         const randomToken = Math.floor(1000 + Math.random() * 9000);
                         const exp = new Date().getTime() + (30 * 60 * 1000);
-                        messageGmailVerifyRegister(req.body.email, randomToken);
-                        res.status(200).cookie(
-                            jwtCookiesName.verifyEmail,
-                            jwt.sign({ email: req.body.email, password: req.body.password, token: randomToken, avatar: req.body.avatar, expires: new Date(exp).getTime() }, jwtPrivateKey, { expiresIn: '30m' }),
-                            { maxAge: 1 * 60 * 60 * 1000, httpOnly: true, secure: true, sameSite: "None", }
-                        ).send({ emailValid: true, message: "SUCCES" });
+                        messageGmailVerifyRegister(req.body.email, randomToken, ((success) => {
+                            res.status(200).cookie(
+                                jwtCookiesName.verifyEmail,
+                                jwt.sign({ email: req.body.email, password: req.body.password, token: randomToken, avatar: req.body.avatar, expires: new Date(exp).getTime() }, jwtPrivateKey, { expiresIn: '30m' }),
+                                { maxAge: 1 * 60 * 60 * 1000, httpOnly: true, secure: true, sameSite: "None", }
+                            ).send({ emailValid: true, message: success });
+                        }));
                     }
                 }
                 else {
