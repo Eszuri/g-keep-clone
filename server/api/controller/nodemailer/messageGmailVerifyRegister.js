@@ -1,9 +1,10 @@
 import { connectNodemailer } from './config.js';
 
+import 'dotenv/config'
 const messageGmailVerifyRegister = (email, token) => {
 
     const message = {
-        from: "ualdo296@gmail.com",
+        from: process.env.USER,
         to: email,
         subject: "TESTING NODE MAILER",
         text: `THIS MESSAGE : ${token}`
@@ -13,7 +14,7 @@ const messageGmailVerifyRegister = (email, token) => {
         if (err) {
             console.log(err);
         } else {
-            res.status(200).send({ sentMessage: true, message: "message sent gmail" })
+            return data
         }
     })
 };

@@ -1,9 +1,10 @@
 import { connectNodemailer } from './config.js';
+import 'dotenv/config'
 
 const messageGmailResetPassword = (email, id, token) => {
 
     const message = {
-        from: "ualdo296@gmail.com",
+        from: process.env.USER,
         to: email,
         subject: "TESTING NODE MAILER",
         text: `Please Enter The Url :`,
@@ -18,7 +19,7 @@ const messageGmailResetPassword = (email, id, token) => {
         if (err) {
             console.log(err);
         } else {
-            res.status(200).send({ sentMessage: true, message: "message sent gmail" })
+            return data
         }
     })
 };
