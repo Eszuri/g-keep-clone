@@ -136,7 +136,7 @@ export default function VerifyEmail() {
                             color: "white"
                         }
                     })
-                    window.location.reload();
+                    // window.location.reload();
 
                 } else {
                     toast.error("ERROR ReGenerate Token", {
